@@ -1,17 +1,50 @@
 {
-  "name": "KYC-KYB-Engine",
+  "name": "kyc-kyb-engine",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "KYC/KYB verification engine backend",
+  "main": "server.js",
   "type": "module",
+  "packageManager": "pnpm@10.33.4",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec tsx server.ts",
+    "build": "rimraf dist && tsc && tsc-esm-fix --target=dist",
+    "start": "node --enable-source-maps dist/server.js",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.33.4",
   "dependencies": {
-    "express": "^5.2.1"
+    "@prisma/client": "^6.5.0",
+    "bullmq": "^5.34.0",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.1.0",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.5.0",
+    "rimraf": "^6.0.1",
+    "tsc-esm-fix": "^3.1.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }

@@ -1,0 +1,12 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Feature modules own their data: as a module is added under src/modules/<name>,
+// its models get added here (e.g. `model KycProfile { ... }`), and the module's
+// <name>.repo.ts is the only place that imports `prisma` to query them directly.

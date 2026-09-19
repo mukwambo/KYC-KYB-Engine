@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kyc-kyb-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kyc_kyb
+      POSTGRES_PASSWORD: kyc_kyb
+      POSTGRES_DB: kyc_kyb_engine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: kyc-kyb-redis
+    restart: unless-stopped
+    # Host port 6380: another local project already binds 6379.
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
